@@ -1,0 +1,23 @@
+int checkPrime(int a)
+{
+    for(int i = 2;i<a/2;i++)
+    {
+        if(a%i==0)
+        return 0;//not prime
+    }
+    return 1;
+}
+int diagonalPrime(int** nums, int numsSize, int* numsColSize)
+{
+    int prime=0,i=0,k=numsSize-1;
+    while(i<numsSize && k>-1)
+    {
+        if(nums[i][i]>prime && (checkPrime(nums[i][i])))
+            prime=nums[i][i];
+        if(nums[i][k]>prime && (checkPrime(nums[i][k])))
+            prime=nums[i][k];
+        i++;
+        k--;
+    }
+    return (prime == 1) ? 0 : prime;
+}
